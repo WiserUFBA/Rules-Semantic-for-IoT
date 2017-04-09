@@ -15,7 +15,7 @@ public class Reasoner {
 
 //    private static String fname = "http://192.168.0.13:3030/sistemasweb";
     private static String fname = "teste.ttl";
-    private static String NS = "@prefix j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>";
+    private static String NS = "http://www.loa-cnr.it/ontologies/DUL.owl#/";
 
     public void reasoner() {
 
@@ -30,7 +30,8 @@ public class Reasoner {
 
         PrintWriter out = new PrintWriter(System.out);
 
-        for (StmtIterator i = inf.listStatements(inf.getResource(NS + "A"), inf.getProperty(NS + "p"), inf.getResource(NS + "D")); i.hasNext(); ) {
+//        for (StmtIterator i = inf.listStatements(inf.getResource(NS + "A"), inf.getProperty(NS + "p"), inf.getResource(NS + "D")); i.hasNext(); ) {
+        for (StmtIterator i = inf.listStatements(); i.hasNext(); ) {
             Statement s = i.nextStatement();
             System.out.println("Statement is " + s);
             for (Iterator id = inf.getDerivation(s); id.hasNext(); ) {
