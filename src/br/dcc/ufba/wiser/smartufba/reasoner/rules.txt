@@ -1,2 +1,0 @@
-"@prefix j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>"
-[rule1: (?a j.0:hasDataValue ?b) (?b j.0:p ?c) -> (?a j.0:p ?c)]
