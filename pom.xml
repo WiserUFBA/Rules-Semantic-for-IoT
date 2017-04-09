@@ -3,6 +3,11 @@
   <groupId>br.dcc.ufba.wiser.smartufba.reasoner</groupId>
   <artifactId>semantic-reasoner</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+
+  <properties>
+	  <maven.compiler.source>1.8</maven.compiler.source>
+	  <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
   
   <dependencies> 
    	<dependency>
@@ -56,8 +61,13 @@
 			<type>jar</type>
 		</dependency>
 
-  
-  
+	  <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+	  <dependency>
+		  <groupId>org.slf4j</groupId>
+		  <artifactId>slf4j-simple</artifactId>
+		  <version>1.7.25</version>
+	  </dependency>
+
   </dependencies>
   
 </project>
