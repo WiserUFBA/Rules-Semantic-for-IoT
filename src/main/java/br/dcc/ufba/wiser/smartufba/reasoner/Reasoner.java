@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class Reasoner {
 
 //    private static String fname = "http://192.168.0.13:3030/sistemasweb";
-    private static String fname = "model-test.ttl";
+    private static String fname = "teste.ttl";
     private static String NS = "@prefix j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>";
 
     public void reasoner() {
