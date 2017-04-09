@@ -3,17 +3,19 @@ package br.dcc.ufba.wiser.smartufba.reasoner;
 import org.apache.jena.query.DatasetAccessor;
 import org.apache.jena.query.DatasetAccessorFactory;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.update.UpdateAction;
 
 public class UpdateModel {
 
-	
-	
-	private synchronized void updateTripleStore(Model model,
-			String tripleStoreURI) {
-		System.out.println("entrou updateTripleStore " + tripleStoreURI);
+		
+	public  void updateTripleStore(String tripleStoreURI, Model model, String adressModel) {
+		
+		UpdateAction.parseExecute(tripleStoreURI, model );
+		
 		DatasetAccessor accessor = DatasetAccessorFactory
-				.createHTTP(tripleStoreURI);
+				.createHTTP(adressModel);
 		accessor.add(model);
-
+		
+		model.write( System.out, "TTL" );
 	}
 }

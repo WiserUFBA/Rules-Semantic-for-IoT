@@ -13,18 +13,23 @@ import org.apache.jena.reasoner.Derivation;
 import org.apache.jena.reasoner.rulesys.GenericRuleReasoner;
 import org.apache.jena.reasoner.rulesys.Rule;
 import org.apache.jena.util.FileManager;
+;
 
 public class Reasoner {
 
-	 private static String fname = "http://192.168.0.102:3030/sistemasweb";
+	 private static String fname = "http://192.168.0.13:3030/sistemasweb";
 	 private static String NS = "@prefix j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>";
 	 
 	 public void reasoner(){
 			
-		    Model data = FileManager.get().loadModel(fname );
+		 //   Model data = FileManager.get().loadModel("C:\\Users\\Cleber\\git\\Rules-Semantic-for-IoT\\src\\br\\dcc\\ufba\\wiser\\smartufba\\reasoner\\teste.ttl" );
+		    
+		    Model data = FileManager.get().loadModel(fname);
 		    
 		    String rules = "[rule1: (?a j.0:hasDataValue ?b) (?b j.0:p ?c) -> (?a j.0:p ?c)]";
-		    
+		   
+		    /*  Regra sendo elaborada pelo Gustavo
+			   
 		   // List<Rule> regras = Rule.parseRules(rules);
 		    
 		    GenericRuleReasoner reasoner = new GenericRuleReasoner(Rule.rulesFromURL("C:\\Users\\Cleber\\workspace\\semantic-reasoner\\src\\main\\resources\\rules.txt"));
@@ -44,6 +49,36 @@ public class Reasoner {
 		          }     
 		    }
 		    out.flush(); 	
+		    
+		    */
+		  
+		    UpdateModel updatemodel = new UpdateModel();
+		    
+		    //Caso ocorra o Match na inferência o modelo é atualizado  ()
+		    
+		    String tripleStoreURI = "" +
+	                "PREFIX  j.1: <http://purl.oclc.org/NET/ssnx/ssn#>\n" +
+	                "PREFIX  j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>\n" +
+	                "PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>\n" +
+	      "DELETE { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>\n" + 
+          "						       a                 j.1:ObservationValue ;\n"  + 
+          "                            j.0:hasDataValue  \"37\"^^xsd:double ;\n" +
+          "                            j.0:isSettingFor  false .}\n" +
+           
+          "INSERT { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>\n" +
+          "                  a                 j.1:ObservationValue ;\n" +
+          "                  j.0:hasDataValue  \"37\"^^xsd:double ;\n" +
+          "                  j.0:isSettingFor  true .}\n " +
+          
+  "  WHERE { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>" +
+  "                   a                 j.1:ObservationValue ;\n" +
+  "                   j.0:hasDataValue  \"37\"^^xsd:double ;\n" +
+  "                   j.0:isSettingFor  false . }";
+   
+		
+  
+	 	   updatemodel.updateTripleStore(tripleStoreURI, data,fname);
+		    
 		    
 
 		}
