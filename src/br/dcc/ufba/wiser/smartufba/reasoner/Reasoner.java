@@ -22,10 +22,9 @@ public class Reasoner {
 	 
 	 public void reasoner(){
 			
-		    Model data = FileManager.get().loadModel("C:\\Users\\Cleber\\git\\Rules-Semantic-for-IoT\\src\\br\\dcc\\ufba\\wiser\\smartufba\\reasoner\\teste.ttl" );
+		    Model data = FileManager.get().loadModel(fname );
 		    
-		//    Model data = FileManager.get().loadModel(fname);
-		    data.write(System.out, "TTL");
+		
 		    String rules = "[rule1: (?a j.0:hasDataValue ?b) (?b j.0:p ?c) -> (?a j.0:p ?c)]";
 		   
 		    /*  Regra sendo elaborada pelo Gustavo
@@ -55,15 +54,16 @@ public class Reasoner {
 		    UpdateModel updatemodel = new UpdateModel();
 		    
 		    //Caso ocorra o Match na inferência o modelo é atualizado  ()
-		    
+		   
 		    String tripleStoreURI = "" +
 	                "PREFIX  j.1: <http://purl.oclc.org/NET/ssnx/ssn#>\n" +
 	                "PREFIX  j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>\n" +
 	                "PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>\n" +
-	      "DELETE { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>\n" + 
+	               
+	                "DELETE { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>\n" + 
           "						       a                 j.1:ObservationValue ;\n"  + 
           "                            j.0:hasDataValue  \"37\"^^xsd:double ;\n" +
-          "                            j.0:isSettingFor  false, true .}\n" +
+          "                            j.0:isSettingFor  false .}\n" +
            
           "INSERT { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>\n" +
           "                  a                 j.1:ObservationValue ;\n" +
@@ -73,13 +73,12 @@ public class Reasoner {
   "  WHERE { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>" +
   "                   a                 j.1:ObservationValue ;\n" +
   "                   j.0:hasDataValue  \"37\"^^xsd:double ;\n" +
-  "                   j.0:isSettingFor  false , true . }";
+  "                   j.0:isSettingFor  false . }";
    
 		
 		 
-		   
-		    
-	 	 //  updatemodel.updateTripleStore(tripleStoreURI, data,fname);
+		  
+	 	  updatemodel.updateTripleStore(tripleStoreURI, data,fname);
 		    
 		    
 

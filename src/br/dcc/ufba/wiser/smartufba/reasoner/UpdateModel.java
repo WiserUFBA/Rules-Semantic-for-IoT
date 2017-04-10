@@ -11,15 +11,8 @@ public class UpdateModel {
 	public synchronized void updateTripleStore(String tripleStoreURI, Model model, String adressModel) {
 		
 		UpdateAction.parseExecute(tripleStoreURI, model );
-	
-		DatasetAccessor accessor = DatasetAccessorFactory
-				.createHTTP(adressModel);
-		accessor.add(model);
-		
-		
-	//	model = accessor. getModel();
-		
-	//	model.write( System.out, "TTL" );
+		DatasetAccessor accessor = DatasetAccessorFactory.createHTTP(adressModel);
+		accessor.putModel(model);
 
 	}
 }
