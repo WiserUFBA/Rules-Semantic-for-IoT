@@ -1,8 +1,11 @@
 package br.dcc.ufba.wiser.smartufba.reasoner;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
@@ -17,8 +20,22 @@ import org.apache.jena.util.FileManager;
 
 public class Reasoner {
 
-	 private static String fname = "http://192.168.0.109:3030/sistemasweb/";
+	// private static String fname = "http://192.168.0.109:3030/sistemasweb/";
 	 private static String NS = "@prefix j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>";
+	private static String fname = "";
+	 
+	 static {
+	 try{
+	 
+		 Properties prop = getProp();
+		 fname = prop.getProperty("addressModel");
+	 }
+	 catch(IOException iox)
+	 {
+		 System.out.println("Arquivo não localizado");
+	 }
+	} 	
+	 
 	 
 	 public void reasoner(){
 			
@@ -84,6 +101,14 @@ public class Reasoner {
 
 		}
 
+	 public static Properties getProp() throws IOException {
+			Properties props = new Properties();
+			FileInputStream file = new FileInputStream("./main/resources/br.ufba.dcc.wiser.smartufba.semanticrules.properties");
+			props.load(file);
+			return props;
+		}
+
+	 
 	 public static void main (String [] args){
 		 Reasoner reasoner = new Reasoner();
 		 reasoner.reasoner();

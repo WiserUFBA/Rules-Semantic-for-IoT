@@ -1,0 +1,23 @@
+PREFIX  j.1: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX  j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+DELETE { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>
+a                 j.1:ObservationValue ;
+j.0:hasDataValue  "37"^^xsd:double ;
+j.0:isSettingFor  true, false .}
+WHERE { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>
+a                 j.1:ObservationValue ;
+j.0:hasDataValue  "37"^^xsd:double ;
+j.0:isSettingFor  true, false . };
+
+
+PREFIX  j.1: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX  j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+PREFIX  j.1: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX  j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+INSERT DATA { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>
+a                 j.1:ObservationValue ;
+j.0:hasDataValue  "37"^^xsd:double ;
+j.0:isSettingFor  false .}
