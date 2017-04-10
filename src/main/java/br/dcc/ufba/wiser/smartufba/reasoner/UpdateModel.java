@@ -7,15 +7,13 @@ import org.apache.jena.update.UpdateAction;
 
 public class UpdateModel {
 
+	
+		
+	public synchronized void updateTripleStore(String tripleStoreURI, Model model, String adressModel) {
+		
+		UpdateAction.parseExecute(tripleStoreURI, model );
+		DatasetAccessor accessor = DatasetAccessorFactory.createHTTP(adressModel);
+		accessor.putModel(model);
 
-    public  void updateTripleStore(String tripleStoreURI, Model model, String adressModel) {
-
-        UpdateAction.parseExecute(tripleStoreURI, model );
-
-        DatasetAccessor accessor = DatasetAccessorFactory
-            .createHTTP(adressModel);
-        accessor.add(model);
-
-        model.write( System.out, "TTL" );
-    }
+	}
 }
