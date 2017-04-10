@@ -17,15 +17,15 @@ import org.apache.jena.util.FileManager;
 
 public class Reasoner {
 
-	 private static String fname = "http://192.168.0.13:3030/sistemasweb";
+	 private static String fname = "http://192.168.0.109:3030/sistemasweb/";
 	 private static String NS = "@prefix j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>";
 	 
 	 public void reasoner(){
 			
-		 //   Model data = FileManager.get().loadModel("C:\\Users\\Cleber\\git\\Rules-Semantic-for-IoT\\src\\br\\dcc\\ufba\\wiser\\smartufba\\reasoner\\teste.ttl" );
+		    Model data = FileManager.get().loadModel("C:\\Users\\Cleber\\git\\Rules-Semantic-for-IoT\\src\\br\\dcc\\ufba\\wiser\\smartufba\\reasoner\\teste.ttl" );
 		    
-		    Model data = FileManager.get().loadModel(fname);
-		    
+		//    Model data = FileManager.get().loadModel(fname);
+		    data.write(System.out, "TTL");
 		    String rules = "[rule1: (?a j.0:hasDataValue ?b) (?b j.0:p ?c) -> (?a j.0:p ?c)]";
 		   
 		    /*  Regra sendo elaborada pelo Gustavo
@@ -63,7 +63,7 @@ public class Reasoner {
 	      "DELETE { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>\n" + 
           "						       a                 j.1:ObservationValue ;\n"  + 
           "                            j.0:hasDataValue  \"37\"^^xsd:double ;\n" +
-          "                            j.0:isSettingFor  false .}\n" +
+          "                            j.0:isSettingFor  false, true .}\n" +
            
           "INSERT { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>\n" +
           "                  a                 j.1:ObservationValue ;\n" +
@@ -73,11 +73,13 @@ public class Reasoner {
   "  WHERE { <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>" +
   "                   a                 j.1:ObservationValue ;\n" +
   "                   j.0:hasDataValue  \"37\"^^xsd:double ;\n" +
-  "                   j.0:isSettingFor  false . }";
+  "                   j.0:isSettingFor  false , true . }";
    
 		
-  
-	 	   updatemodel.updateTripleStore(tripleStoreURI, data,fname);
+		 
+		   
+		    
+	 	 //  updatemodel.updateTripleStore(tripleStoreURI, data,fname);
 		    
 		    
 

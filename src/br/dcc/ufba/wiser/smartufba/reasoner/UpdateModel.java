@@ -8,14 +8,18 @@ import org.apache.jena.update.UpdateAction;
 public class UpdateModel {
 
 		
-	public  void updateTripleStore(String tripleStoreURI, Model model, String adressModel) {
+	public synchronized void updateTripleStore(String tripleStoreURI, Model model, String adressModel) {
 		
 		UpdateAction.parseExecute(tripleStoreURI, model );
-		
+	
 		DatasetAccessor accessor = DatasetAccessorFactory
 				.createHTTP(adressModel);
 		accessor.add(model);
 		
-		model.write( System.out, "TTL" );
+		
+	//	model = accessor. getModel();
+		
+	//	model.write( System.out, "TTL" );
+
 	}
 }
