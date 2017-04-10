@@ -1106,4 +1106,4 @@
   <http://wiser.dcc.ufba.br/smartUFBA/devices/ufbaino#obsValue_14915308050001491530865086>
           a                 j.1:ObservationValue ;
           j.0:hasDataValue  "37"^^xsd:double ;
-          j.0:isSettingFor  false , true .
+          j.0:isSettingFor  false .
