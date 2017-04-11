@@ -18,15 +18,28 @@ import org.apache.jena.util.FileManager;
 
 public class Reasoner {
 
-	 private static String fname = "http://192.168.0.109:3030/sistemasweb/";
-//	private static String fname = "teste.ttl";
+	private static String fname = "http://192.168.0.109:3030/sistemasweb/";
+
 	private String updateTripleStore = "updateTripleStore.txt";
-	 
+	
+	public void init() {
+		
+		Reasoner reasoner = new Reasoner();
+		
+		try{
+			reasoner.reasoner();
+		}catch(	IOException | URISyntaxException e){
+			System.out.println("Ocorreu um erro ao iniciar o Reasoner");
+		}
+	
+	}
+	
+	
 	 static {
 	 try{
 	 
 		 Properties prop = getProp();
-		 fname = prop.getProperty("addressModel");
+		// fname = prop.getProperty("addressModel");
 	 }
 	 catch(IOException iox)
 	 {
@@ -39,19 +52,12 @@ public class Reasoner {
 			
 		    Model data = FileManager.get().loadModel(fname );
 
-//		    String rules = "[rule1: (?a j.0:hasDataValue ?b) (?b j.0:p ?c) -> (?a j.0:p ?c)]";
-		   
-//		      Regra sendo elaborada pelo Gustavo
-			   
-//		    List<Rule> regras = Rule.parseRules(rules);
-		    
-		    GenericRuleReasoner reasoner = new GenericRuleReasoner(Rule.rulesFromURL("rules.txt"));
+	    GenericRuleReasoner reasoner = new GenericRuleReasoner(Rule.rulesFromURL("rules.txt"));
 		    reasoner.setDerivationLogging(true);
 		    InfModel inf = ModelFactory.createInfModel(reasoner, data);
 		    
 		    PrintWriter out = new PrintWriter(System.out);
 		    
-//         for (StmtIterator i = inf.listStatements(null, inf.getProperty("highTemperature"), null, data); i.hasNext(); ) {
          for (StmtIterator i = inf.listStatements(); i.hasNext(); ) {
 		        Statement s = i.nextStatement();
 		        for (Iterator id = inf.getDerivation(s); id.hasNext(); ) {
@@ -85,8 +91,7 @@ public class Reasoner {
 
 	 
 	 public static void main (String [] args) throws IOException, URISyntaxException {
-		 Reasoner reasoner = new Reasoner();
-		 reasoner.reasoner();
+		
 	 }
 	
 
