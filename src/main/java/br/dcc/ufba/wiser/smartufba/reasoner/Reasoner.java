@@ -13,8 +13,9 @@ import org.apache.jena.rdf.model.*;
 import org.apache.jena.reasoner.Derivation;
 import org.apache.jena.reasoner.rulesys.GenericRuleReasoner;
 import org.apache.jena.reasoner.rulesys.Rule;
+import org.apache.jena.update.Update;
 import org.apache.jena.util.FileManager;
-;
+
 
 public class Reasoner {
 
@@ -35,17 +36,7 @@ public class Reasoner {
 	}
 	
 	
-	 static {
-	 try{
-	 
-		 Properties prop = getProp();
-		// fname = prop.getProperty("addressModel");
-	 }
-	 catch(IOException iox)
-	 {
-		 System.out.println("Arquivo não localizado");
-	 }
-	}
+	
 
 
     public void reasoner() throws IOException, URISyntaxException {
@@ -73,7 +64,7 @@ public class Reasoner {
 		}
 
     private void updateModel(Model data, Resource subject) throws IOException, URISyntaxException {
-        UpdateModel updatemodel = new UpdateModel();
+    	UpdateModel updatemodel = new UpdateModel();
         //Caso ocorra o Match na inferência o modelo é atualizado  ()
         StringBuilder sb = new StringBuilder();
         Files.lines(Paths.get(ClassLoader.getSystemResource(updateTripleStore).toURI()))
@@ -88,11 +79,4 @@ public class Reasoner {
 			props.load(file);
 			return props;
 		}
-
-	 
-	 public static void main (String [] args) throws IOException, URISyntaxException {
-		
-	 }
-	
-
 }
