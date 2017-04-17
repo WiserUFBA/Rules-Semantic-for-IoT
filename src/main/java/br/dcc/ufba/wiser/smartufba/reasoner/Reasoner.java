@@ -13,17 +13,22 @@ import org.apache.jena.rdf.model.*;
 import org.apache.jena.reasoner.Derivation;
 import org.apache.jena.reasoner.rulesys.GenericRuleReasoner;
 import org.apache.jena.reasoner.rulesys.Rule;
-import org.apache.jena.update.Update;
 import org.apache.jena.util.FileManager;
 
 
 public class Reasoner {
 
-	private static String fname = "http://192.168.0.109:3030/sistemasweb/";
+	private static String fname = "http://192.168.0.13:3030/sistemasweb/";
 
 	private String updateTripleStore = "updateTripleStore.txt";
 	
+	public Reasoner(){
+		
+	}
+	
 	public void init() {
+		
+		System.out.println("Iniciando;");
 		
 		Reasoner reasoner = new Reasoner();
 		
@@ -31,7 +36,11 @@ public class Reasoner {
 			reasoner.reasoner();
 		}catch(	IOException | URISyntaxException e){
 			System.out.println("Ocorreu um erro ao iniciar o Reasoner");
+		}catch(	Exception e){
+			System.out.println(e.getLocalizedMessage());
+			
 		}
+		
 	
 	}
 	
@@ -42,8 +51,8 @@ public class Reasoner {
     public void reasoner() throws IOException, URISyntaxException {
 			
 		    Model data = FileManager.get().loadModel(fname );
-
-	    GenericRuleReasoner reasoner = new GenericRuleReasoner(Rule.rulesFromURL("rules.txt"));
+		    
+		    GenericRuleReasoner reasoner = new GenericRuleReasoner(Rule.rulesFromURL("main/resources/rules.txt"));
 		    reasoner.setDerivationLogging(true);
 		    InfModel inf = ModelFactory.createInfModel(reasoner, data);
 		    

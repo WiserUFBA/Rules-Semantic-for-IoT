@@ -7,13 +7,17 @@ public class Activator implements BundleActivator {
 
     static BundleContext bc;
 
-
+    @Override
     public void start(BundleContext bc) throws Exception {
         System.out.println("Starting the bundle Rules Semantic for IoT");
+        Activator.bc = bc;
     }
 
-    public void stop(BundleContext bc) throws Exception {
-        System.out.println("Stopping the bundle Rules Semantic for IoT");
+    @Override
+     public void stop(BundleContext bc) throws Exception {
+        
+    	System.out.println("Stopping the bundle Rules Semantic for IoT");
+    	Activator.bc = null;
     }
 
 }
