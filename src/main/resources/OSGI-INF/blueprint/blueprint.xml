@@ -27,7 +27,7 @@
 		xmlns="http://camel.apache.org/schema/blueprint">
 		<route>
 			<from uri="timer://myTimer?period=12000" /><!-- 8 hours -->
-			<to uri="ReasonerBean?method=reasoner" />
+			<to uri="bean:ReasonerBean?method=reasoner" />
 		</route>
 	</camelContext>
  

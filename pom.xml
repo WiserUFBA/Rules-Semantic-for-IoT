@@ -26,17 +26,23 @@
 				<configuration>
 					<instructions>
 						<Bundle-Activator>br.dcc.ufba.wiser.smartufba.reasoner.Activator</Bundle-Activator>
-						 <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Description>${project.description}</Bundle-Description>
                         <Export-Package>br.dcc.ufba.wiser.smartufba.reasoner</Export-Package>
 						<Embed-Dependency>mqtt-client;scope=compile|runtimeinline=false</Embed-Dependency>
 						<Embed-Directory>target/dependency</Embed-Directory>
 						<Embed-StripGroup>true</Embed-StripGroup>
 						<Embed-Transitive>true</Embed-Transitive>
-						<Import-Package>*</Import-Package>
+						<Import-Package>
+                            org.apache.felix.service.command,
+                            org.apache.felix.gogo.commands,
+                            org.apache.karaf.shell.console,
+                             *
+                        </Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
+			
 			
 			<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -168,6 +174,33 @@
 			<artifactId>camel-spring</artifactId>
 			<version>2.16.2</version>
 		</dependency>
+		
+	<!-- https://mvnrepository.com/artifact/org.eclipse.core/org.eclipse.core.runtime -->
+<!-- https://mvnrepository.com/artifact/org.eclipse.core/org.eclipse.core.runtime -->
+<!-- https://mvnrepository.com/artifact/org.eclipse.core/runtime -->
+<!-- https://mvnrepository.com/artifact/org.eclipse.core/org.eclipse.core.runtime -->
+
+<dependency>
+    <groupId>org.eclipse.core</groupId>
+    <artifactId>org.eclipse.core.runtime</artifactId>
+    <version>3.7.0</version>
+</dependency>
+
+
+
+
+		
+		<!-- https://mvnrepository.com/artifact/org.osgi/org.osgi.core -->
+<!-- https://mvnrepository.com/artifact/org.osgi/osgi.core -->
+<dependency>
+    <groupId>org.osgi</groupId>
+    <artifactId>osgi.core</artifactId>
+    <version>6.0.0</version>
+</dependency>
+
+		
+
+
 		
 		<dependency>
 			<groupId>org.apache.jena</groupId>

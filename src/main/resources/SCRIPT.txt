@@ -59,3 +59,14 @@ SELECT ?hasDataValue
                    a                 j.1:ObservationValue ;
                    j.0:hasDataValue  "37"^^xsd:double ;
                    j.0:isSettingFor  true . };
+                   
+                   
+PREFIX  j.1: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX  j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+PREFIX  j.1: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX  j.0: <http://www.loa-cnr.it/ontologies/DUL.owl#>
+
+SELECT ?hasDataValue
+  WHERE {          j.0:?hasDataValue  "37"^^xsd:double ;
+                   j.0:isSettingFor  true . }                   
