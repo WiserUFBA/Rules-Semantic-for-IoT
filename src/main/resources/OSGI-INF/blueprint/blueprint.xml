@@ -21,6 +21,10 @@
 
 	<bean id="ReasonerBean" class="br.dcc.ufba.wiser.smartufba.reasoner.Reasoner"
 		init-method="init">
+		<property name="fusekiServer" value="http://192.168.0.109:3030/sistemasweb" />
+		<property name="prefix" value="j.0" />
+		<property name="adressPrefix" value="http://www.loa-cnr.it/ontologies/DUL.owl#" />
+		
 	</bean>
  
 	<camelContext id="camel"
