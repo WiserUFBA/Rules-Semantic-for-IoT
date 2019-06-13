@@ -15,13 +15,20 @@ import org.apache.jena.reasoner.rulesys.Rule;
 import org.apache.jena.util.FileManager;
 import org.apache.jena.util.PrintUtil;
 import java.util.logging.Logger;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class Reasoner {
 
-	 private final static Logger LOGGER = Logger.getLogger(Reasoner.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(Reasoner.class.getName());
 	
 	private String prefix;
 	private String adressPrefix;
+        private String adressFile;
+        private Path newFilePath;
+        private Path dir;
 	
 	public String getPrefix() {
 		return prefix;
@@ -60,7 +67,31 @@ public class Reasoner {
 	}
 	
 	
-	
+	public void createFile(){
+            LOGGER.info("Create file log ");
+	          
+            
+            Path path = Paths.get(adressFile);
+            try{
+                
+            if(Files.isDirectory(path)){   
+                
+                dir = Paths.get(path.toUri());
+                
+            }else{  
+                dir =  Files.createDirectories(path);
+            }
+            
+          
+            this.newFilePath = path.resolve("reg.txt");
+           
+            Files.write(newFilePath, "{send: 1}\n".getBytes() ,StandardOpenOption.APPEND);
+            
+            
+            }catch(IOException v){
+               System.out.print(v.getMessage());
+            }
+        }
 
 
     public void reasoner() throws IOException, URISyntaxException {
@@ -68,7 +99,8 @@ public class Reasoner {
     		LOGGER.info("Rationing on the model");
     		
     		Model data = FileManager.get().loadModel(fusekiServer );
-		    
+		
+                createFile();
     		
     		GenericRuleReasoner reasoner = null;
 		    
@@ -103,6 +135,7 @@ public class Reasoner {
                     RDFNode object = s.getObject();
                     LOGGER.info("Object is " + object.toString());
                     updateModel(data, s.getSubject());
+                    createFile();
                 }
 		    }
 		    out.flush();
@@ -149,5 +182,19 @@ public class Reasoner {
     	}
     }
 	*/
+
+    /**
+     * @return the adressFile
+     */
+    public String getAdressFile() {
+        return adressFile;
+    }
+
+    /**
+     * @param adressFile the adressFile to set
+     */
+    public void setAdressFile(String adressFile) {
+        this.adressFile = adressFile;
+    }
 
 }
